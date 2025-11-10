@@ -10,14 +10,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("api/v1/software-engineers")
 public class SoftwareEngineerController {
 
+    private final SoftwareEngineerService softwareEngineerService;
+
+    SoftwareEngineerController(SoftwareEngineerService softwareEngineerService) {
+        this.softwareEngineerService = softwareEngineerService;
+    }
+
     // @PostMapping // for post request
     // @DeleteMapping // for delete request
     // @PutMapping // for update request
     @GetMapping // for get request
     public List<SoftwareEngineer> getEngineers() {
-        return List.of(
-                new SoftwareEngineer(1, "Ahmed", "JS, Node, React, Tailwindcss"),
-                new SoftwareEngineer(2, "Ali", "Java, spring, spring boot"));
+        return softwareEngineerService.getSoftwareEngineers();
     }
 }
  
