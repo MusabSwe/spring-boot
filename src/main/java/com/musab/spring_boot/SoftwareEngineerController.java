@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -26,10 +28,20 @@ public class SoftwareEngineerController {
         return softwareEngineerService.getSoftwareEngineers();
     }
 
+    @GetMapping("{id}")
+    public SoftwareEngineer getSoftwareEngineerById(@PathVariable Integer id) {
+        return softwareEngineerService.getSoftwareEngineerById(id);
+    }
+
     @PostMapping
     public void addNewSoftwareEngineer(
             @RequestBody SoftwareEngineer softwareEngineer) {
         softwareEngineerService.insertSoftwareEngineer(softwareEngineer);
     }
 
+    @DeleteMapping("{id}")
+    public void removeSoftwareEngineerById(
+            @PathVariable Integer id) {
+         softwareEngineerService.removeSoftwareEngineerById(id);
+    }
 }
