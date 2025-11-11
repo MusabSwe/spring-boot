@@ -8,11 +8,16 @@ import org.springframework.stereotype.Service;
 public class SoftwareEngineerService {
    private final SoftwareEngineerRepository softwareEngineerRepository;
 
-   public SoftwareEngineerService(SoftwareEngineerRepository softwareEngineerRepository){
-    this.softwareEngineerRepository = softwareEngineerRepository;
+   public SoftwareEngineerService(SoftwareEngineerRepository softwareEngineerRepository) {
+      this.softwareEngineerRepository = softwareEngineerRepository;
    }
 
-   public List<SoftwareEngineer> getSoftwareEngineers(){
-    return softwareEngineerRepository.findAll(); // software_engineer table
+   public List<SoftwareEngineer> getSoftwareEngineers() {
+      return softwareEngineerRepository.findAll(); // get all records of software_engineer table
+   }
+
+   public void insertSoftwareEngineer(
+      SoftwareEngineer softEngineer){
+      softwareEngineerRepository.save(softEngineer);
    }
 }

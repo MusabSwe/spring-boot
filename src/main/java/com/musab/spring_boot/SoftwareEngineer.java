@@ -1,14 +1,22 @@
 package com.musab.spring_boot;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class SoftwareEngineer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String techStack;
+
+    // ✅ Hibernate requires this
+    public SoftwareEngineer() {
+
+    }
 
     // constructor
     public SoftwareEngineer(Integer id, String name, String techStack) {
