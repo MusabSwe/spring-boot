@@ -24,7 +24,20 @@ public class SoftwareEngineerService {
    }
 
    public SoftwareEngineer getSoftwareEngineerById(Integer id) {
-      return softwareEngineerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Software engineer with id " + id + " not found"));
+      return softwareEngineerRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Software engineer with id " + id + " not found"));
+   }
+
+   public void updateSoftwareEngineer(Integer id,SoftwareEngineer updatedSoftwareEngineer) {
+      boolean exist = softwareEngineerRepository.existsById(id);
+      if (!exist) {
+         throw new ResourceNotFoundException("Software engineer with id " + id + " not found");
+      } else {
+         SoftwareEngineer softwareEngineer = softwareEngineerRepository.findById(id).get();
+         softwareEngineer.setName(updatedSoftwareEngineer.getName());
+         softwareEngineer.setTechStack(updatedSoftwareEngineer.getTechStack());
+         softwareEngineerRepository.save(softwareEngineer);
+      }
    }
 
    public void removeSoftwareEngineerById(Integer id) {
@@ -35,4 +48,5 @@ public class SoftwareEngineerService {
          softwareEngineerRepository.deleteById(id);
       }
    }
+
 }
